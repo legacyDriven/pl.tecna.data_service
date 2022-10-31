@@ -7,12 +7,20 @@ import org.springframework.web.bind.annotation.*;
 import pl_tecna_data_service.service.GroovyDto;
 import pl_tecna_data_service.service.GroovyScriptService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/groovy")
 @AllArgsConstructor
 public class DataServiceController {
 
     private final GroovyScriptService scriptService;
+
+    @GetMapping
+    @ResponseBody
+    public ResponseEntity<List<GroovyDto>> findAll(){
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 
     @GetMapping("/{name}")
     @ResponseBody

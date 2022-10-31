@@ -1,5 +1,6 @@
 package pl_tecna_data_service;
 
+import com.github.javafaker.Faker;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,4 +20,10 @@ public class Application {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+    @Bean
+    public Faker faker(){
+        return new Faker();
+    }
+
 }
