@@ -1,13 +1,13 @@
 package pl_tecna_data_service.api;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl_tecna_data_service.infrastructure.GroovyScriptPage;
 import pl_tecna_data_service.service.GroovyDto;
 import pl_tecna_data_service.service.GroovyScriptService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/groovy")
@@ -16,19 +16,10 @@ public class DataServiceController {
 
     private final GroovyScriptService scriptService;
 
-    @GetMapping
+    @GetMapping("/{page}")
     @ResponseBody
-    public ResponseEntity<List<GroovyDto>> findAll(){
-        return new ResponseEntity<>(null, HttpStatus.OK);
-    }
-
-    @GetMapping("/{name}")
-    @ResponseBody
-    public ResponseEntity<GroovyDto> getByName(@PathVariable String name){
-        if(!scriptService.containsScript(name))
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity<>(scriptService.getScriptByName(name), HttpStatus.OK);
+    ResponseEntity<Page<GroovyDto>> getScripts(GroovyScriptPage page){
+        return new ResponseEntity<>(scriptService.getGroovyScripts(page), HttpStatus.OK);
     }
 
     @PostMapping("/{groovyDto}")

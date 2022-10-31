@@ -1,6 +1,7 @@
 package pl_tecna_data_service.service;
 
 import lombok.*;
+import pl_tecna_data_service.infrastructure.GroovyScript;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,5 +14,12 @@ public class GroovyDto {
     private String description;
     private String groovySourceCode;
 
+    public static GroovyDto fromEntity(GroovyScript script){
+        return GroovyDto.builder()
+                .scriptName(script.getName())
+                .description(script.getDescription())
+                .groovySourceCode(script.getGroovySourceCode())
+                .build();
+    }
 }
 
