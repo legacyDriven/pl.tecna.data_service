@@ -1,9 +1,6 @@
 package pl_tecna_data_service.infrastructure;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity(name = "GROOVY_SCRIPT")
 public class GroovyScript {
     @Id
@@ -18,14 +16,13 @@ public class GroovyScript {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", nullable = true)
     private String description;
 
     @Column(name="GROOVY_SOURCE_CODE", length = 3000, nullable = true)
     private String groovySourceCode;
-
 
 }
