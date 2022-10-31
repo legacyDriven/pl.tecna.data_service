@@ -43,11 +43,11 @@ public class DataServiceController {
     @DeleteMapping("/{name}")
     @ResponseBody
     public ResponseEntity<String> deleteByName(@PathVariable String name){
-
         if(scriptService.getScriptByName(name)==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(name, HttpStatus.OK);
+        scriptService.deleteByName(name);
+        return new ResponseEntity<>(String.format("Groovy script: %s has beed deleted.", name), HttpStatus.OK);
     }
 }
 
