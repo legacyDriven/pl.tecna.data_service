@@ -27,6 +27,7 @@ public class GroovyScriptServiceImpl implements GroovyScriptService {
                   .orElseThrow(NoSuchElementException::new), GroovyDto.class);
     }
 
+    @Override
     public boolean containsScript(String scriptName){
         return groovyScriptRepository.findByName(scriptName).isPresent();
     }
@@ -39,8 +40,8 @@ public class GroovyScriptServiceImpl implements GroovyScriptService {
     }
 
     @Override
-    public void deleteByName(String name) {
-        groovyScriptRepository.deleteByName(name);
+    public int deleteByName(String name) {
+        return groovyScriptRepository.deleteByName(name);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class GroovyScriptServiceImpl implements GroovyScriptService {
     @Override
     public void updateScript(GroovyDto groovyDto) {
         if(this.containsScript(groovyDto.getScriptName())){
-            GroovyScript toUpdate = groovyScriptRepository.findByName(groovyDto.getScriptName()).orElseThrow(NoSuchElementException::new);//get();
+            GroovyScript toUpdate = groovyScriptRepository.findByName(groovyDto.getScriptName()).orElseThrow(NoSuchElementException::new);
             toUpdate.setDescription(groovyDto.getDescription());
             toUpdate.setGroovySourceCode(groovyDto.getGroovySourceCode());
             groovyScriptRepository.save(toUpdate);

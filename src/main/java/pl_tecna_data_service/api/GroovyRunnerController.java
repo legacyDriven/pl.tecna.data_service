@@ -1,6 +1,7 @@
 package pl_tecna_data_service.api;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import pl_tecna_data_service.service.GroovyRunnerService;
 @RestController
 @RequestMapping("/groovyrunner")
 @AllArgsConstructor
+@Slf4j
 public class GroovyRunnerController {
 
     private final GroovyRunnerService runnerService;

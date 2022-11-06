@@ -1,7 +1,6 @@
 package pl_tecna_data_service.infrastructure;
 
 import com.github.javafaker.Faker;
-import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

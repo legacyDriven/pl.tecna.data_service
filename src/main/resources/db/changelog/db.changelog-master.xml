@@ -13,7 +13,7 @@
             <column name="ID" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="groovy_script_id_pk" />
             </column>
-            <column name="NAME" type="varchar(250)">
+            <column name="NAME" type="varchar(100)">
                 <constraints unique="true" uniqueConstraintName="name_unq" />
             </column>
             <column name="DESCRIPTION" type="varchar(500)"/>

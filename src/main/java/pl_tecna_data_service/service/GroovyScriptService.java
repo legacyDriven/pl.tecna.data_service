@@ -5,7 +5,7 @@ import pl_tecna_data_service.infrastructure.GroovyScriptPage;
 
 public interface GroovyScriptService {
 
-    void deleteByName(String name);
+    int deleteByName(String name);
 
     void saveScript(GroovyDto groovyDto);
 
