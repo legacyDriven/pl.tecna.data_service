@@ -1,0 +1,6 @@
+#spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml
+
+databaseChangeLog:
+  -
+app.data-sources.liquibase:
+  change-log: classpath:db/changelog/db.changelog-master.xml

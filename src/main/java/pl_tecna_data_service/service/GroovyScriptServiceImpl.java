@@ -7,9 +7,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl_tecna_data_service.infrastructure.GroovyScript;
-import pl_tecna_data_service.infrastructure.GroovyScriptPage;
-import pl_tecna_data_service.infrastructure.GroovyScriptRepository;
+import pl_tecna_data_service.dao.groovy_script.model.GroovyScript;
+import pl_tecna_data_service.dao.groovy_script.GroovyScriptPage;
+import pl_tecna_data_service.dao.groovy_script.GroovyScriptRepository;
+import pl_tecna_data_service.model.GroovyScriptDTO;
 
 import java.util.NoSuchElementException;
 
@@ -22,12 +23,6 @@ public class GroovyScriptServiceImpl implements GroovyScriptService {
     private final ModelMapper modelMapper;
 
     @Override
-    public GroovyDto getScriptByName(String name){
-          return modelMapper.map(groovyScriptRepository.findByName(name)
-                  .orElseThrow(NoSuchElementException::new), GroovyDto.class);
-    }
-
-    @Override
     public boolean containsScript(String scriptName){
         return groovyScriptRepository.findByName(scriptName).isPresent();
     }
@@ -37,6 +32,11 @@ public class GroovyScriptServiceImpl implements GroovyScriptService {
         Sort sort = Sort.by(page.getSortDirection(), page.getSortBy());
         Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize(), sort);
         return groovyScriptRepository.findAll(pageable).map(GroovyDto::fromEntity);
+    }
+
+    @Override
+    public GroovyScriptDTO findById(Long id) {
+        return null;
     }
 
     @Override

@@ -1,17 +1,19 @@
-package pl_tecna_data_service.infrastructure;
+package pl_tecna_data_service.config;
 
 import com.github.javafaker.Faker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl_tecna_data_service.dao.groovy_script.model.GroovyScript;
+import pl_tecna_data_service.dao.groovy_script.GroovyScriptRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
-public class SampleDataLoader implements CommandLineRunner {
+class SampleDataLoader implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(SampleDataLoader.class);
     private final GroovyScriptRepository scriptRepository;

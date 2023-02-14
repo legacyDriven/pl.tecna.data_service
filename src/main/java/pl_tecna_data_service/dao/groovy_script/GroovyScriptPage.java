@@ -1,4 +1,4 @@
-package pl_tecna_data_service.infrastructure;
+package pl_tecna_data_service.dao.groovy_script;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

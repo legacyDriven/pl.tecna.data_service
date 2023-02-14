@@ -1,0 +1,13 @@
+spring:
+  profiles.active: local
+  application.name: data-service
+  cloud.config.enabled: false
+
+server.port: 0
+app.version: @project.version@
+
+---
+
+spring:
+  config:
+    activate.on-profile: 'local'

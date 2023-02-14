@@ -1,0 +1,17 @@
+springdoc:
+  swagger-ui.enabled: false
+  api-docs.enabled: false
+
+---
+
+spring.config.activate.on-profile: "prod"
+
+springdoc:
+  version: v0.3.0
+  swagger-ui:
+    enabled: true
+    operations-sorter: method
+
+
+---
+

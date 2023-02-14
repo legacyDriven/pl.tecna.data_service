@@ -1,7 +1,8 @@
 package pl_tecna_data_service.service;
 
 import org.springframework.data.domain.Page;
-import pl_tecna_data_service.infrastructure.GroovyScriptPage;
+import pl_tecna_data_service.dao.groovy_script.GroovyScriptPage;
+import pl_tecna_data_service.model.GroovyScriptDTO;
 
 public interface GroovyScriptService {
 
@@ -11,10 +12,9 @@ public interface GroovyScriptService {
 
     void updateScript(GroovyDto groovyDto);
 
-    GroovyDto getScriptByName(String scriptName);
-
     boolean containsScript(String name);
 
     Page<GroovyDto> getGroovyScripts(GroovyScriptPage page);
 
+    GroovyScriptDTO findById(Long id);
 }

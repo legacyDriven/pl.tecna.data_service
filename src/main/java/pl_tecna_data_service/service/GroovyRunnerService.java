@@ -2,7 +2,7 @@ package pl_tecna_data_service.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl_tecna_data_service.infrastructure.GroovyScriptRepository;
+import pl_tecna_data_service.dao.groovy_script.GroovyScriptRepository;
 
 @Service
 @AllArgsConstructor

@@ -1,13 +1,14 @@
 package pl_tecna_data_service.api;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import pl_tecna_data_service.infrastructure.GroovyScriptPage;
+import pl_tecna_data_service.model.GroovyScriptDTO;
+import pl_tecna_data_service.dao.groovy_script.GroovyScriptPage;
 import pl_tecna_data_service.service.GroovyDto;
 import pl_tecna_data_service.service.GroovyScriptService;
 import reactor.core.publisher.Mono;
@@ -18,9 +19,15 @@ import javax.validation.Valid;
 @RequestMapping(value = "/groovy")
 @AllArgsConstructor
 @Slf4j
-public class DataServiceController {
+public class GroovyScriptController {
 
     private final GroovyScriptService scriptService;
+
+    @Operation(summary = "Get script by id")
+    @GetMapping("/{id}")
+    public GroovyScriptDTO getById(@PathVariable Long id){
+        return scriptService.findById(id);
+    }
 
     @GetMapping("/{page}")
     @ResponseBody
@@ -28,18 +35,28 @@ public class DataServiceController {
         return new ResponseEntity<>(scriptService.getGroovyScripts(page), HttpStatus.OK);
     }
 
-    @PostMapping("/{groovyDto}")
-    @ResponseBody
-    public ResponseEntity<String> saveGroovyScript(@RequestBody @Valid GroovyDto groovyDto, Errors errors){
-        if(errors.hasErrors())
-            return new ResponseEntity<>("Improper data format:" + errors, HttpStatus.BAD_REQUEST);
-
-        if(scriptService.containsScript(groovyDto.getScriptName())){
-            return new ResponseEntity<>("Script with name " + groovyDto.getScriptName() + " is already persisted", HttpStatus.OK);
-        }
-        scriptService.saveScript(groovyDto);
-        return new ResponseEntity<>("Script persisted: " + groovyDto.getScriptName(), HttpStatus.OK);
+    @PostMapping(value = "/{groovyDto}", consumes = "application/json")
+    public ResponseEntity<GroovyDto> saveGroovyScript(@RequestBody GroovyDto groovyDto){
+        return ResponseEntity.ok(GroovyDto.builder().scriptName("qqqq").description("ffff").groovySourceCode("qqqqq").build());
+//        if(scriptService.containsScript(groovyDto.getScriptName())){
+//            return new ResponseEntity<>(groovyDto, HttpStatus.OK);
+//        }
+//        scriptService.saveScript(groovyDto);
+//
+//        return new ResponseEntity<>(groovyDto, HttpStatus.CREATED);
     }
+
+//    @PostMapping(value = "/{groovyDto}", consumes = "application/json")
+//    public ResponseEntity<String> saveGroovyScript(@RequestBody @Valid GroovyDto groovyDto, Errors errors){
+//        if(errors.hasErrors())
+//            return new ResponseEntity<>("Improper data format:" + errors, HttpStatus.BAD_REQUEST);
+//
+//        if(scriptService.containsScript(groovyDto.getScriptName())){
+//            return new ResponseEntity<>("Script with name " + groovyDto.getScriptName() + " is already persisted", HttpStatus.OK);
+//        }
+//        scriptService.saveScript(groovyDto);
+//        return new ResponseEntity<>("Script persisted: " + groovyDto.getScriptName(), HttpStatus.CREATED);
+//    }
 
     @PutMapping("/{groovydto}")
     @ResponseBody
